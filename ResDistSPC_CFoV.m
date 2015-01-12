@@ -43,7 +43,7 @@ for counter = 1/z_min:-((1/z_min-1/z_max)/n_points):1/z_max
     Tb = Base_m(ALCm,z);
     
     for i = 1:size(Tb,1)
-        Tb(i,13) = (Tb(i,1) + Tb(i,2)) / 2; % Finding the centerof light cones
+        Tb(i,13) = (Tb(i,1) + Tb(i,2)) / 2; % Finding the center of light cones
         Tb(i,14) = (Tb(i,3) + Tb(i,4)) / 2;
     end
     
