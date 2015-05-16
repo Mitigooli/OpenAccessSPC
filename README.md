@@ -6,8 +6,8 @@ Code for creating and using the SPC model of a plenoptic camera with known geome
 The current implementation can be run with both MATLAB and GNU Octave.  It will 
 be rewritten for Python, hopefully soon.
 
-In case you want to give reference to any of the published papers,
-- refer to [ACIVS12] and [MIUN13] for the general concept of the SPC model.
+In case you want to give reference to any of the published papers:
+- refer to [ACIVS12] and [MIUN13] for the general concept of the SPC model,
 - refer to [SPIE13] and [IC3D12] for the spatial resolution extractor applicable to the common field of view, 
 - refer to [ICASSP14] and [ICIP14] for the spatial resolution extractor applicable to the whole field of view,
 - refer to [ICIP15] for the angular and depth resolution extractors.
