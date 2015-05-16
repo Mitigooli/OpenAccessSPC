@@ -6,6 +6,11 @@ Code for creating and using the SPC model of a plenoptic camera with known geome
 The current implementation can be run with both MATLAB and GNU Octave.  It will 
 be rewritten for Python, hopefully soon.
 
+In case you want to give reference to any of the published papers,
+- refer to [ACIVS12] and [MIUN13] for the general concept of the SPC model.
+- refer to [SPIE13] and [IC3D12] for the spatial resolution extractor applicable to the common field of view, 
+- refer to [ICASSP14] and [ICIP14] for the spatial resolution extractor applicable to the whole field of view,
+- refer to [ICIP15] for the angular and depth resolution extractors.
 
 Generating the SPC-model
 -------------------------------------------------------------------------------
@@ -62,18 +67,19 @@ with known geometry and spacing build the structure of the plenoptic camera.
 In `Lytro.m` I've implemented the original Lytro camera as an example of  
 plenoptic camera implementation. 
 More info about the parameters can be found in the header of the file.
-See [Lytro] for more details.
+See [ICASSP14] for more details.
 
 `R29.m` is my implementation of the Raytrix R29 plenoptic camera, which is used 
-to generate the results in [Raytrix].
+to generate the results in [ICIP14].
 
 
 Extracting camera properties
 -------------------------------------------------------------------------------
 
-So far the special resolution has been the interesting property.  Here I look 
-at the spatial resolution profile through depth, or, as I call it, the lateral 
-resolution.
+So far the special and depth resolution have been the interesting properties.  
+
+First I look at the spatial resolution profile through depth, or, as I call it, the lateral 
+resolution. Then it follows with depth and angular resolution.
 
 The following scripts are described:
 
@@ -93,7 +99,7 @@ in the common field of view of all the microlenses using the principal-ray-model
 The resolvability distance is calculated for several depth planes.
 The principal ray model is implemented using the SPC model, when the aperture 
 is at the center of the microlenses and in the size of a pin-hole. 
-The results have been used in papers [SPIE13] and [Raytrix].
+The results have been used in papers [SPIE13] and [ICIP14].
 More info about the parameters can be found in the header of the file.
 
 `ResDistSPC_CFoV.m` calculates the minimum resolvability distance in the common 
@@ -105,13 +111,13 @@ More info about the parameters can be found in the header of the file.
 then calculates the minimum-resolvability-distance for several depth planes. 
 The surface area to look for the  minimum-resolvability-distance goes outside 
 the common field of view (CFoV), using an incremental approach. 
-This is described in detail in paper [Lytro].
+This is described in detail in paper [ICASSP14].
 
 `StitchedResDistR29.m` generates the SPC model of an R29 plenoptic camera and 
 then calculates the minimum-resolvability-distance for several depth planes. 
 The surface area to look for the  minimum-resolvability-distance goes outside 
 the common field of view (CFoV), using an incremental approach. 
-This is described in detail in papers [Lytro] and [Raytrix].
+This is described in detail in papers [ICASSP14] and [ICIP14].
 
 `ERR.m`, the Effective Resolution Ratio calculates and plots the 
 normalized-spatial-resolution for R29 plenoptic camera using the 
@@ -121,38 +127,53 @@ It also calculates and plots the normalized-spatial-resolution for a plenoptic
 camera with three-focal length microlens array structure, using the analytical 
 approach.
 
-More info about the SPC model can be found in [a], [b] and [c].
+Here I look at the depth resolution extractor.
+The following script is described:
+
+    * DepthRes.m
+
+`DepthRes.m`extracts the location of the resolvable depth planes for a plenoptic 2.0
+(or a focused lenoptic) camera. It considers only the central row of the pixels on 
+the image sensor and so it is one dimensional.
+
+
+More info about the SPC model can be found in [ACIVS12], [IC3D12] and [MIUN13].
 
 References
 -------------------------------------------------------------------------------
 
-[SPIE13] Damghanian, Mitra, Roger Olsson, Mårten Sjöström, Hector Navarro Fructuoso, 
+[SPIE13] Mitra Damghanian, Roger Olsson, Mårten Sjöström, Hector Navarro Fructuoso, 
 and Manuel Martinez-Corral. "Investigating the lateral resolution in a plenoptic 
 capturing system using the SPC model." In IS&T/SPIE Electronic Imaging, pp. 
 86600T-86600T. International Society for Optics and Photonics, 2013.
 URL: http://miun.diva-portal.org/smash/record.jsf?pid=diva2:607155
 
-[Raytrix] Damghanian, Mitra, Roger Olsson, Mårten Sjöström, Arne Erdmann, and 
-Christian Perwass. "SPATIAL RESOLUTION IN A MULTI-FOCUS PLENOPTIC CAMERA." (2014): 
-1932-1936. URL: http://miun.diva-portal.org/smash/record.jsf?pid=diva2:762088
+[ICIP14] Mitra Damghanian, Roger Olsson, Mårten Sjöström, Arne Erdmann, and 
+Christian Perwass. "Spatial resolution in a multi-focus plenoptic camera." 
+IEEE International Conference on Image Processing (ICIP), 2014, pp: 1932-1936. 
+URL: http://miun.diva-portal.org/smash/record.jsf?pid=diva2:762088
 
-[Lytro] Damghanian, Mitra, Roger Olsson, and Mårten Sjöström. "Performance analysis 
+[ICASSP14] Mitra Damghanian, Roger Olsson, and Mårten Sjöström. "Performance analysis 
 in Lytro camera: Empirical and model based approaches to assess refocusing quality."
 ICASSP, IEEE International Conference on Acoustics, Speech and Signal Processing - 
 Proceedings, IEEE conference proceedings, 2014, 559-563 (2014).
 URL: http://miun.diva-portal.org/smash/record.jsf?pid=diva2:706716
 
-[a] Damghanian, Mitra, Roger Olsson, and Mårten Sjöström. "The Sampling Pattern 
+[ICIP15] Mitra Damghanian, Roger Olsson, Mårten Sjöström. "Depth and angular resolution 
+in plenoptic cameras." Accepted in: IEEE International Conference on Image Processing (ICIP), 
+Québec, Canada, Sep2015.
+
+[ACIVS12] Mitra Damghanian, Roger Olsson, and Mårten Sjöström. "The Sampling Pattern 
 Cube–A Representation and Evaluation Tool for Optical Capturing Systems." In 
 Advanced Concepts for Intelligent Vision Systems, pp. 120-131. Springer Berlin 
 Heidelberg, 2012. URL: http://miun.diva-portal.org/smash/record.jsf?pid=diva2:555237
 
-[b] Damghanian, Mitra, Roger Olsson, and Marten Sjostrom. "Extraction of the lateral 
+[IC3D12] Mitra Damghanian, Roger Olsson, and Marten Sjostrom. "Extraction of the lateral 
 resolution in a plenoptic camera using the SPC model." In 3D Imaging (IC3D), 2012 
 International Conference on, pp. 1-5. IEEE, 2012.
 URL: http://miun.diva-portal.org/smash/record.jsf?pid=diva2:582321
 
-[c] Damghanian, Mitra. “The sampling pattern cube: A framework for representation 
+[MIUN13] Mitra Damghanian. “The sampling pattern cube: A framework for representation 
 and evaluation of plenoptic capturing systems,” Licentiate thesis No 99, Mid
 Sweden University, Department of Information and Communication Systems, 2013.
 URL: http://miun.diva-portal.org/smash/record.jsf?pid=diva2:626787
